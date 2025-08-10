@@ -681,6 +681,42 @@ h3.my-profession {
     color: var(--skin-color);
 }
 
+/* Project filters and cards */
+.projects .project-heading .filters {
+    margin-top: 10px;
+}
+.filter-btn {
+    padding: 8px 14px;
+    margin: 6px 6px 0 0;
+    border-radius: 20px;
+    border: 1px solid var(--bg-black-50);
+    background: var(--bg-black-100);
+    color: var(--text-black-900);
+    cursor: pointer;
+}
+.filter-btn.active,
+.filter-btn:hover {
+    background: var(--skin-color);
+    color: #fff;
+    border-color: var(--skin-color);
+}
+.project-card {
+    background: var(--bg-black-100);
+    border: 1px solid var(--bg-black-50);
+    border-radius: 10px;
+    padding: 0 0 16px 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.project-card .project-image { width: 100%; height: 180px; overflow: hidden; border-top-left-radius: 10px; border-top-right-radius: 10px; }
+.project-card .project-image img { width: 100%; height: 100%; object-fit: cover; cursor: zoom-in; display: block; }
+.project-card h3 { color: var(--text-black-900); margin: 12px 16px 8px; font-size: 18px; }
+.project-card .project-desc { color: var(--text-black-700); font-size: 14px; margin: 0 16px 8px; }
+.project-card .project-tech { color: var(--text-black-700); font-size: 13px; margin: 0 16px 12px; }
+.project-card .project-actions { margin: 0 16px; margin-top: auto; }
+.project-card .project-actions .btn { padding: 8px 18px; }
+
 /* Contact */
 .contact-title {
     color: var(--skin-color);
@@ -974,6 +1010,48 @@ body.dark {
   display: block;
   width: 80%;
   max-width: 700px;
+}
+
+/* Certifications */
+.certifications-list .cert-item {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--bg-black-100);
+    border: 1px solid var(--bg-black-50);
+    border-radius: 8px;
+    padding: 14px 16px;
+}
+.certifications-list .cert-item h4 {
+    color: var(--text-black-900);
+    font-size: 16px;
+    margin: 0 10px 0 0;
+}
+.certifications-list .cert-item .cert-thumb {
+    width: 36px;
+    height: 36px;
+    margin-right: 12px;
+    border-radius: 4px;
+    object-fit: cover;
+}
+.certifications-list .cert-item .btn {
+    padding: 8px 14px;
+}
+
+/* Footer */
+.footer {
+    background: var(--bg-black-100);
+    color: var(--text-black-900);
+    border-top: 1px solid var(--bg-black-50);
+    padding: 24px 0;
+}
+.footer a { color: var(--skin-color); }
+
+@media (max-width: 767px) {
+    .project-card .project-image { height: 160px; }
 }
 
 #caption {

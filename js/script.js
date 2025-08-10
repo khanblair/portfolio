@@ -1,9 +1,9 @@
-// Typing animation
+// Typing animation (updated roles)
 var typed = new Typed(".typing", {
-    strings: ["", "Web Designer", "Web Developer", "System Developer", "Programmer"],
-    typeSpeed: 150,
-    BackSpeed: 60,
-    loop: true
+  strings: ["", "Software Developer", "Mobile App Developer", "System Designer"],
+  typeSpeed: 120,
+    backSpeed: 60,
+  loop: true
 })
 
 // Aside
@@ -86,68 +86,81 @@ function asideSectionTogglerBtn() {
     }
 }
 
-// Get the modal
-var modal = document.getElementById("imageModal");
+// Project filters
+const filterButtons = document.querySelectorAll('.filter-btn');
+const projectItems = document.querySelectorAll('#projectGrid .project-item');
 
-// Get the modal image, caption, and demo link
-var modalImg = document.getElementById("modalImage");
-var captionText = document.getElementById("caption");
-var demoLink = document.getElementById("demoLink");
+function applyFilter(filter) {
+  projectItems.forEach((item) => {
+    const tech = (item.getAttribute('data-tech') || '').toLowerCase();
+    const match = filter === 'all' || tech.includes(filter);
+    item.style.display = match ? '' : 'none';
+  });
+}
 
-// Get all elements with class "project-img" and add click event
-var projectImages = document.getElementsByClassName("project-img");
-for (var i = 0; i < projectImages.length; i++) {
-  projectImages[i].onclick = function(e) {
-    if (e.target.classList.contains('view-project-btn')) {
-      // If the clicked element is the "View Project" button, open the modal
-      openModal(this);
+filterButtons.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    filterButtons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    applyFilter(btn.getAttribute('data-filter'));
+  });
+});
+
+// Initialize default filter
+applyFilter('all');
+
+// Contact form now posts to Web3Forms (no JS needed)
+
+// Image lightbox for project and certification images
+(function setupImageLightbox(){
+    var modal = document.getElementById('imageModal');
+    if(!modal) return;
+    var modalImg = document.getElementById('modalImage');
+    var captionText = document.getElementById('caption');
+    var closeBtn = modal.querySelector('.close');
+
+    function openModal(src, caption){
+        modal.style.display = 'block';
+        modal.setAttribute('aria-hidden','false');
+        modalImg.src = src;
+        modalImg.alt = caption || 'Preview image';
+        captionText.textContent = caption || '';
     }
-  }
-}
+    function closeModal(){
+        modal.style.display = 'none';
+        modal.setAttribute('aria-hidden','true');
+        modalImg.src = '';
+        captionText.textContent = '';
+    }
 
-// Function to open the modal
-function openModal(projectElement) {
-  modal.style.display = "block";
-  modalImg.src = projectElement.querySelector('img').src;
-  captionText.innerHTML = projectElement.querySelector('img').alt;
-  
-  // Set the demo link
-  var demoUrl = projectElement.getAttribute('data-demo-url');
-  if (demoUrl) {
-    demoLink.style.display = 'inline-block';
-    demoLink.href = demoUrl;
-  } else {
-    demoLink.style.display = 'none';
-  }
-  
-  // Center the demo link button
-  setTimeout(function() {
-    demoLink.style.display = 'block';
-    demoLink.style.margin = '20px auto';
-  }, 100);
-}
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-
-// Add click event to "View Project" buttons
-var viewProjectBtns = document.getElementsByClassName("view-project-btn");
-for (var i = 0; i < viewProjectBtns.length; i++) {
-  viewProjectBtns[i].onclick = function(e) {
-    e.stopPropagation(); // Prevent event bubbling
-    var projectElement = this.closest('.project-img');
-    openModal(projectElement);
-  }
-}
+    // Project images (cards)
+    document.querySelectorAll('.project-card .project-image img').forEach(img => {
+        img.addEventListener('click', () => openModal(img.src, img.getAttribute('data-caption') || img.alt));
+    });
+    // Restored demo project overlays: clicking on image (not the button) opens modal with the image; clicking button opens demo URL
+    document.querySelectorAll('.project-img img').forEach(img => {
+        img.addEventListener('click', (e) => {
+            const container = img.closest('.project-img');
+            const src = img.getAttribute('src');
+            const alt = img.getAttribute('alt') || '';
+            openModal(src, alt);
+        });
+    });
+    document.querySelectorAll('.project-img .view-project-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const container = btn.closest('.project-img');
+            const url = container?.getAttribute('data-demo-url');
+            if (url) window.open(url, '_blank');
+        });
+    });
+    // Certification thumbs
+    document.querySelectorAll('.certifications-list .cert-thumb').forEach(img => {
+        img.style.cursor = 'zoom-in';
+        img.addEventListener('click', () => openModal(img.src, img.nextElementSibling?.textContent || 'Certificate'));
+    });
+    // Close controls
+    closeBtn && closeBtn.addEventListener('click', closeModal);
+    window.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
+    window.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeModal(); });
+})();
