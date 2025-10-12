@@ -6,13 +6,7 @@ Live site: https://khanblair.github.io/portfolio/
 
 ## Features
 
-- Responsive single-page layout: Home, About, Services, Projects, Certifications, Contact
-- Typing effect for roles (Typed.js)
-- Theme color switcher (5 preset skins in `css/skins/`)
-- Light/Dark mode toggle
-- Project filtering by technology tags
-- Image lightbox for project and certification previews
-- Contact form powered by Web3Forms
+- Designs section to showcase graphics design work (posters, banners, motion)
 
 ## Tech stack
 
@@ -30,6 +24,30 @@ css/
 	skins/
 		color1.css ... color5.css
 js/
+## Designs Section
+
+Added a new Designs section (`#designs`) to feature graphics design work.
+
+- Nav includes a "Designs" link
+- Grid cards under `#designGrid` use the same modal lightbox as projects
+- Each card follows this structure:
+
+```
+<div class="design-card padd-15">
+	<div class="design-card-inner shadow-dark">
+		<div class="design-image">
+			<img src="images/example.png" alt="Short description" data-caption="Caption shown in modal">
+		</div>
+		<div class="design-meta">
+			<h3>Title</h3>
+			<p>Short context.</p>
+			<div class="tool-badges"><span class="badge">Photoshop</span></div>
+		</div>
+	</div>
+	</div>
+```
+
+To add more designs: duplicate a `design-card` in `index.html` and update the `img` src/alt/caption and meta.
 	script.js           # Navigation, filters, lightbox, interactions
 	style_switcher.js   # Theme color + dark/light toggle
 images/               # Screenshots, profile, icons

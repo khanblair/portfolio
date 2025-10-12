@@ -1083,6 +1083,27 @@ body.dark {
   cursor: pointer;
 }
 
+/* Designs (Graphics) */
+.designs .project-heading h2 { font-weight: 600; }
+.design-grid { width: 100%; }
+.design-card { flex: 0 0 50%; max-width: 50%; margin-bottom: 30px; }
+.design-card-inner { background: var(--bg-black-100); border: 1px solid var(--bg-black-50); border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; }
+.design-card .design-image { width: 100%; height: 220px; overflow: hidden; }
+.design-card .design-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.design-card .design-meta { padding: 12px 14px 16px; }
+.design-card .design-meta h3 { margin: 6px 0 4px; color: var(--text-black-900); font-size: 18px; }
+.design-card .design-meta p { margin: 0 0 8px; color: var(--text-black-700); font-size: 14px; }
+.tool-badges .badge { display: inline-block; padding: 4px 10px; border: 1px solid var(--bg-black-50); background: var(--bg-black-100); color: var(--text-black-900); border-radius: 20px; font-size: 12px; margin-right: 6px; }
+
+@media (max-width: 991px) {
+    .design-card { flex: 0 0 50%; max-width: 50%; }
+    .design-card .design-image { height: 200px; }
+}
+@media (max-width: 767px) {
+    .design-card { flex: 0 0 100%; max-width: 100%; }
+    .design-card .design-image { height: 180px; }
+}
+
 
 
 

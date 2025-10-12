@@ -1,6 +1,6 @@
 // Typing animation (updated roles)
 var typed = new Typed(".typing", {
-  strings: ["", "Software Developer", "Mobile App Developer", "System Designer"],
+    strings: ["", "Software Developer", "Mobile App Developer", "System Designer", "Graphics Designer"],
   typeSpeed: 120,
     backSpeed: 60,
   loop: true
@@ -158,6 +158,11 @@ applyFilter('all');
     document.querySelectorAll('.certifications-list .cert-thumb').forEach(img => {
         img.style.cursor = 'zoom-in';
         img.addEventListener('click', () => openModal(img.src, img.nextElementSibling?.textContent || 'Certificate'));
+    });
+    // Designs grid images
+    document.querySelectorAll('#designGrid .design-image img').forEach(img => {
+        img.style.cursor = 'zoom-in';
+        img.addEventListener('click', () => openModal(img.src, img.getAttribute('data-caption') || img.alt));
     });
     // Close controls
     closeBtn && closeBtn.addEventListener('click', closeModal);
