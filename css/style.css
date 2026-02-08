@@ -350,27 +350,30 @@ h3.my-profession {
     flex: 0 0 35%;
     max-width: 35%;
     text-align: center;
-    position: relative;
 }
-.home-img::after {
+.home-img-inner {
+    position: relative;
+    display: inline-block;
+}
+.home-img-inner::after {
     content: '';
     position: absolute;
     height: 80px;
     width: 80px;
     border-bottom: 10px solid var(--skin-color);
     border-right: 10px solid var(--skin-color);
-    right: -20px;
-    bottom: 20px;
+    right: -30px;
+    bottom: -30px;
 }
-.home-img::before {
+.home-img-inner::before {
     content: '';
     position: absolute;
     height: 80px;
     width: 80px;
     border-top: 10px solid var(--skin-color);
     border-left: 10px solid var(--skin-color);
-    left: -20px;
-    top: -40px;
+    left: -30px;
+    top: -30px;
 }
 .home .home-img img {
     width: 100%;
